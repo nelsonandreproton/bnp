@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Redirecting...</title>
   <script>
-    document.addEventListener("DOMContentLoaded", async () => {
+    document.addEventListener("DOMContentLoaded", () => {
       const params = new URLSearchParams(window.location.search);
       const val = parseInt(params.get("val"));
 
@@ -13,24 +13,20 @@
         return;
       }
 
-      try {
-        // 🔹 Call your Google Apps Script Web App to log into Sheets
-        const scriptUrl = "https://script.google.com/macros/s/AKfycbzLDRGhzYR0vtdn72EjqyBW1Zdl8jBZMUygXy2aJ5sDdLE9xV3HZGtr7FLSEIFTZ_HT/exec"; // <--- replace
-        await fetch(`${scriptUrl}?val=${val}`);
+      // 🔹 Call Apps Script without caring for response (avoids CORS)
+     const scriptUrl = "https://script.google.com/macros/s/AKfycbzLDRGhzYR0vtdn72EjqyBW1Zdl8jBZMUygXy2aJ5sDdLE9xV3HZGtr7FLSEIFTZ_HT/exec"; // <--- replace
+      const img = document.createElement("img");
+      img.src = `${scriptUrl}?val=${val}`;
+      img.style.display = "none";
+      document.body.appendChild(img);
 
-        // 🔹 Choose redirect image
-        let imageUrl = "";
-        
-          imageUrl = "https://i.imgur.com/1wfR3il.jpeg";
+      // 🔹 Redirect to image
+  imageUrl = "https://i.imgur.com/1wfR3il.jpeg"
        
 
-        // 🔹 Redirect to image
+      setTimeout(() => {
         window.location.href = imageUrl;
-
-      } catch (err) {
-        console.error(err);
-        document.body.innerHTML = "<h2>Error logging data</h2>";
-      }
+      }, 500); // small delay so script logs first
     });
   </script>
 </head>
