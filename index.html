@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Redirecting...</title>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Get ?val= parameter from URL
+      const params = new URLSearchParams(window.location.search);
+      const val = parseInt(params.get("val"));
+
+      // If no value given
+      if (!val) {
+        document.body.innerHTML = "<h2>No value provided</h2>";
+        return;
+      }
+
+      // Example redirection logic
+      let imageUrl = "";
+     
+        imageUrl = "https://i.imgur.com/1wfR3il.jpeg"; // example +10
+     
+
+      // Redirect to image
+      window.location.href = imageUrl;
+    });
+  </script>
+</head>
+<body>
+  <h2>Processing...</h2>
+</body>
+</html>
