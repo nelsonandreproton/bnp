@@ -4,25 +4,33 @@
   <meta charset="UTF-8">
   <title>Redirecting...</title>
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      // Get ?val= parameter from URL
+    document.addEventListener("DOMContentLoaded", async () => {
       const params = new URLSearchParams(window.location.search);
       const val = parseInt(params.get("val"));
 
-      // If no value given
       if (!val) {
         document.body.innerHTML = "<h2>No value provided</h2>";
         return;
       }
 
-      // Example redirection logic
-      let imageUrl = "";
-     
-        imageUrl = "https://i.imgur.com/1wfR3il.jpeg"; // example +10
-     
+      try {
+        // 🔹 Call your Google Apps Script Web App to log into Sheets
+        const scriptUrl = "https://script.google.com/macros/s/AKfycbzLDRGhzYR0vtdn72EjqyBW1Zdl8jBZMUygXy2aJ5sDdLE9xV3HZGtr7FLSEIFTZ_HT/exec"; // <--- replace
+        await fetch(`${scriptUrl}?val=${val}`);
 
-      // Redirect to image
-      window.location.href = imageUrl;
+        // 🔹 Choose redirect image
+        let imageUrl = "";
+        
+          imageUrl = "https://i.imgur.com/1wfR3il.jpeg";
+       
+
+        // 🔹 Redirect to image
+        window.location.href = imageUrl;
+
+      } catch (err) {
+        console.error(err);
+        document.body.innerHTML = "<h2>Error logging data</h2>";
+      }
     });
   </script>
 </head>
