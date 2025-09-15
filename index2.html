@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>Registo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    select, button {
+      font-size: 16px;
+      padding: 8px 12px;
+      margin: 10px;
+    }
+    #message {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: green;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h2>Escolhe um valor</h2>
+
+  <select id="valueSelect">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+  </select>
+  <br>
+  <button id="registerBtn">Registar</button>
+
+  <div id="message">Registado com sucesso!</div>
+
+  <script>
+    document.getElementById("registerBtn").addEventListener("click", () => {
+      const val = document.getElementById("valueSelect").value;
+
+      // URL do teu Google Apps Script
+      const scriptUrl = "https://script.google.com/macros/s/AKfycbxWdZGE10IHWRtTItTwLV8ILRFsSo1-qNZQLiAVw-xs2rey3NMfsGfl8RpI2l6aZ70/exec";
+
+      // Criar um request escondido via imagem (para evitar CORS)
+      const img = document.createElement("img");
+      img.src = `${scriptUrl}?val=${val}`;
+      img.style.display = "none";
+      document.body.appendChild(img);
+
+      // Mostrar mensagem de sucesso
+      document.getElementById("message").style.display = "block";
+    });
+  </script>
+</body>
+</html>
