@@ -24,9 +24,15 @@
   imageUrl = "https://raw.githubusercontent.com/nelsonandreproton/bnp/refs/heads/main/programa.jpg"
        
 
+    //  setTimeout(() => {
+      //  window.location.href = imageUrl;
+     // }, 500); // small delay so script logs first
+  //  });
+
+      // 🔹 Open image in a new tab (instead of redirect)
       setTimeout(() => {
-        window.location.href = imageUrl;
-      }, 500); // small delay so script logs first
+        window.open(imageUrl, "_blank"); 
+      }, 500); // delay so Apps Script gets request
     });
   </script>
 </head>
